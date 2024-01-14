@@ -14,6 +14,14 @@ const routes: RouteRecordRaw[] = [
         path: '/banaozel_siparislerim',
         component: () => import('../components/LoginPage.vue'),
       },
+      {
+        path: '/uyeol',
+        component: () => import('../components/SignUpPage.vue'),
+      },
+      {
+        path: '/sahaflar',
+        component: () => import('../pages/BookSellers.vue'),
+      },
     ],
   },
 

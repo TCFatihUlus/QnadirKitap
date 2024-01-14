@@ -53,12 +53,41 @@ export default defineComponent({
 </script>
 <style>
 #carousel {
-  width: 850px;
+  width: 895px;
   height: 396px;
 }
 #q-pa-md {
   vertical-align: top;
-  width: 860px;
-  height: 405px;
+  width: 895px;
+  height: 396px;
+}
+.scroll {
+  overflow: hidden;
+}
+.q-btn {
+  text-transform: unset;
+  font-weight: 400;
+  text-align: center;
+}
+.q-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+
+.q-btn-dropdown--simple * + .q-btn-dropdown__arrow {
+  margin-left: 0px;
+  display: inline-block;
+  width: 0px;
+  transition: none;
+}
+.rotate-180 {
+  transform: none;
+}
+.block {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  width: 70px;
 }
 </style>

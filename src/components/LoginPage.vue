@@ -1,83 +1,118 @@
+<script setup>
+import { QForm } from 'quasar';
+
+defineProps({
+  email: {
+    required: true,
+    type: String,
+  },
+  password: {
+    required: true,
+    type: String,
+  },
+});
+
+const emit = defineEmits(['update:email', 'update:password']);
+</script>
 <template>
   <q-layout>
     <q-page-container>
       <q-item-label class="label-login" id="label-login">
         Üye Girişi
       </q-item-label>
-      <div class="row3" id="row3">
-        <div class="col1" id="col1">
-          <div class="col3" id="col3">
-            <q-item-label class="label-email" id="label-email">
-              Email
-            </q-item-label>
-            <input class="input-email" id="input-email" placeholder="eposta" />
-            <q-item-label> Şifre </q-item-label>
-            <input
-              type="password"
-              class="input-password"
-              id="input-password"
-              placeholder="Sifre"
-            />
-            <div class="row4" id="row4">
-              <div class="col5" id="col5">
-                <input type="checkbox" />Beni Hatırla
+
+      <q-form class="form1">
+        <div class="row3" id="row3">
+          <div class="col1" id="col1">
+            <div class="col3" id="col3">
+              <q-item-label class="label-email" id="label-email">
+                Email
+              </q-item-label>
+              <input
+                class="input-email"
+                id="input-email"
+                placeholder="eposta"
+                :model-value="email"
+                @update:model-value="(value) => emit('update:email', value)"
+              />
+              <q-item-label> Şifre </q-item-label>
+              <input
+                type="password"
+                class="input-password"
+                id="input-password"
+                placeholder="Sifre"
+                :model-value="password"
+                @update:model-value="(value) => emit('update:password', value)"
+              />
+              <div class="row4" id="row4">
+                <div class="col5" id="col5">
+                  <input type="checkbox" />Beni Hatırla
+                </div>
+                <div class="col6" id="col6">
+                  <a class="label-forgot-password" id="label-forgot-password">
+                    Şifremi Unuttum
+                  </a>
+                </div>
+                <button class="button-login" id="button-login">Giriş</button>
               </div>
-              <div class="col6" id="col6">
-                <a class="label-forgot-password" id="label-forgot-password">
-                  Şifremi Unuttum
-                </a>
-              </div>
-              <button class="button-login" id="button-login">Giriş</button>
+            </div>
+            <div class="col4" id="col4">
+              <q-item-label class="label-not-member" id="label-not-member">
+                Üye değil misiniz?
+              </q-item-label>
+              <button
+                on-click="#uyeol"
+                class="button-signup"
+                id="button-signup"
+              >
+                <router-link to="/uyeol" id="router-signup"
+                  >Üye Olun</router-link
+                >
+              </button>
+              <q-item-label
+                class="label-membership-benefits"
+                id="label-membership-benefits"
+              >
+                Üyelik Avantajları;
+              </q-item-label>
+              <ul class="membership-benefits" id="membership-benefits">
+                <li>Güvenli ticaret döngüsü</li>
+                <li>Satıcılara mesaj gönderme</li>
+                <li>İzleme listesine kitap ekleme</li>
+                <li>Sepetinizde kitap saklama</li>
+                <li>Favori kelimeler belirleme</li>
+              </ul>
             </div>
           </div>
-          <div class="col4" id="col4">
-            <q-item-label class="label-not-member" id="label-not-member">
-              Üye değil misiniz?
-            </q-item-label>
-            <button class="button-signup" id="button-signup">Üye Olun</button>
-            <ul class="membership-benefits" id="membership-benefits">
-              <li>Güvenli ticaret döngüsü</li>
-              <li>Satıcılara mesaj gönderme</li>
-              <li>İzleme listesine kitap ekleme</li>
-              <li>Sepetinizde kitap saklama</li>
-              <li>Favori kelimeler belirleme</li>
-            </ul>
-          </div>
-        </div>
 
-        <div class="col2" id="col2">
-          <a class="transaction-guide" id="transaction-guide">
-            <img src="../assets/information.png" />
-            İşlem Rehberi</a
-          >
-          <div class="col23" id="col23">
-            <ul class="list-transaction-guide" id="list-transaction-guide">
-              <li><a>Sistem nasıl işliyor?</a></li>
-              <li><a>İstediğim ürünü nasıl alırım?</a></li>
-              <li><a>Nasıl ödeme yapabilirim?</a></li>
-              <li><a>Kargo ücreti ne kadar?</a></li>
-              <li><a>Teslimat süresi nedir?</a></li>
-              <li><a>Elden satış imkanı var mı?</a></li>
-              <li><a>Ürün hakkında nasıl bilgi alırım?</a></li>
-              <li><a>Siparişimi nasıl takip edebilirim?</a></li>
-              <li>
-                <a>Birden fazla satıcıdan ürün alırsam nasıl gönderilir?</a>
-              </li>
-              <li><a>Kargo birleştirme nedir?</a></li>
-            </ul>
+          <div class="col2" id="col2">
+            <a class="transaction-guide" id="transaction-guide">
+              <img src="../assets/information.png" />
+              İşlem Rehberi</a
+            >
+            <div class="col23" id="col23">
+              <ul class="list-transaction-guide" id="list-transaction-guide">
+                <li><a>Sistem nasıl işliyor?</a></li>
+                <li><a>İstediğim ürünü nasıl alırım?</a></li>
+                <li><a>Nasıl ödeme yapabilirim?</a></li>
+                <li><a>Kargo ücreti ne kadar?</a></li>
+                <li><a>Teslimat süresi nedir?</a></li>
+                <li><a>Elden satış imkanı var mı?</a></li>
+                <li><a>Ürün hakkında nasıl bilgi alırım?</a></li>
+                <li><a>Siparişimi nasıl takip edebilirim?</a></li>
+                <li>
+                  <a>Birden fazla satıcıdan ürün alırsam nasıl gönderilir?</a>
+                </li>
+                <li><a>Kargo birleştirme nedir?</a></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </q-form>
     </q-page-container>
   </q-layout>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
 
-export default defineComponent({
-  name: 'LoginPage',
-});
-</script>
 <style>
 #label-email {
   color: black;
@@ -179,11 +214,26 @@ export default defineComponent({
   color: white;
   background-color: brown;
   margin-left: 30px;
+  text-decoration: none;
 }
-#transaction-guide {
+.transaction-guide {
   color: brown;
   vertical-align: top;
   text-decoration: none;
   font-size: larger;
+}
+#router-signup {
+  color: white;
+  text-decoration: none;
+  height: 50px;
+  width: 100%;
+}
+#label-membership-benefits {
+  font-size: large;
+  margin-left: 27px;
+  margin-top: 5px;
+}
+.form1 {
+  height: 100%;
 }
 </style>

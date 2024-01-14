@@ -3,20 +3,19 @@
     <q-header nonelevated id="header">
       <div class="row1">
         <div class="col11" id="col11">
-          <img class="logo" id="logo" src="../assets/logo.svg" height="60" />
+          <a>
+            <router-link to="/">
+              <img
+                class="logo"
+                id="logo"
+                src="../assets/logo.svg"
+                height="60"
+              />
+            </router-link>
+          </a>
         </div>
         <div class="col12" id="col12">
-          <button
-            class="categories-btn"
-            id="categories-btn"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <span class="text-dropdown" id="text-dropdown">
-              Kategoriler<span class="caret" id="caret"></span>
-            </span>
-          </button>
+          <DropdownMenu></DropdownMenu>
         </div>
         <div class="col13" id="col13">
           <a
@@ -25,7 +24,9 @@
             id="btn-sellers"
           >
             <span class="text-sellers" id="text-sellers">
-              Kitap Satıcıları
+              <router-link class="text-sellers-btn" to="/sahaflar">
+                Kitap Satıcıları
+              </router-link>
             </span>
           </a>
         </div>
@@ -118,6 +119,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
+import DropdownMenu from 'src/components/DropdownMenu.vue';
 //import { readBuilderProgram } from 'typescript';
 
 const linksList = [
@@ -213,6 +215,7 @@ export default defineComponent({
 
   components: {
     EssentialLink,
+    DropdownMenu,
   },
 
   setup() {
@@ -368,6 +371,11 @@ export default defineComponent({
   width: 100%;
   text-align: center;
   line-height: 80px;
+  text-decoration: none;
+}
+.text-sellers-btn {
+  text-decoration: none;
+  color: darkblue;
 }
 #caret {
   display: inline-block;

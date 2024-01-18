@@ -1,16 +1,14 @@
 import { defineStore } from 'pinia';
-
 import { useRouter } from 'vue-router';
-
-export const useAuthStore = defineStore({
-  id: 'auth',
+export const useRegisterStore = defineStore({
+  id: 'register',
   state: () => ({
     user: null,
     loading: false,
     router: useRouter(),
   }),
   actions: {
-    handleLogin(data) {
+    handleRegister(data) {
       delete data.password;
       console.log(data);
       this.loading = false;

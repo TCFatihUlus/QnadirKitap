@@ -1,3 +1,14 @@
+<script setup>
+import { useRegisterStore } from '../stores/register';
+import { reactive } from 'vue';
+const registerStore = useRegisterStore();
+const registerForm = reactive({
+  name: undefined,
+  surname: undefined,
+  email: undefined,
+  password: undefined,
+});
+</script>
 <template>
   <q-page>
     <div id="row-register1">
@@ -19,68 +30,82 @@
     </div>
     <div class="row-register2" id="row-register2">
       <div class="col-register1" id="col-register1">
-        <div class="col-register11" id="col-register11">
-          <q-item-label class="label-register-form">Ad*:</q-item-label>
-          <input class="input-register-form" />
-          <q-item-label class="label-register-form">Soyad*:</q-item-label>
-          <input class="input-register-form" />
-          <q-item-label class="label-register-form">Ülke*:</q-item-label>
-          <select class="select-register-form"></select>
-          <q-item-label class="label-register-form">Şehir*:</q-item-label>
-          <select class="select-register-form"></select>
-          <q-item-label class="label-register-form">E-posta*:</q-item-label>
-          <input class="input-register-form" />
-          <q-item-label class="label-register-form">Şifre*:</q-item-label>
-          <input type="password" class="input-register-form" />
-          <q-item-label class="label-register-form"
-            >Şifre(Tekrar)*:</q-item-label
-          >
-          <input type="password" class="input-register-form" />
-          <div>
-            <div class="col-radio1" id="col-radio2">
-              <q-item-label class="label-register-form">
-                Kampanya, duyuru<br />
-                e-postası almak istiyorum:
+        <q-form
+          class="form2"
+          @submit.prevent="registerStore.handleRegister(registerForm)"
+        >
+          <div class="col-register11" id="col-register11">
+            <q-item-label class="label-register-form">Ad*:</q-item-label>
+            <input class="input-register-form" v-model="registerForm.name" />
+            <q-item-label class="label-register-form">Soyad*:</q-item-label>
+            <input class="input-register-form" v-model="registerForm.surname" />
+            <q-item-label class="label-register-form">Ülke*:</q-item-label>
+            <select class="select-register-form"></select>
+            <q-item-label class="label-register-form">Şehir*:</q-item-label>
+            <select class="select-register-form"></select>
+            <q-item-label class="label-register-form">E-posta*:</q-item-label>
+            <input class="input-register-form" v-model="registerForm.email" />
+            <q-item-label class="label-register-form">Şifre*:</q-item-label>
+            <input
+              type="password"
+              class="input-register-form"
+              v-model="registerForm.password"
+            />
+            <q-item-label class="label-register-form"
+              >Şifre(Tekrar)*:</q-item-label
+            >
+            <input
+              type="password"
+              class="input-register-form"
+              v-model="registerForm.password"
+            />
+            <div>
+              <div class="col-radio1" id="col-radio2">
+                <q-item-label class="label-register-form">
+                  Kampanya, duyuru<br />
+                  e-postası almak istiyorum:
+                </q-item-label>
+              </div>
+              <div class="col-radio2" id="col-radio2">
+                <input type="radio" value="Evet" checked name="ebulten" />
+                Evet
+                <input type="radio" value="Hayır" name="ebulten" />
+                Hayır
+              </div>
+              <q-item-label id="label-contract">
+                <input type="checkbox" /> Kullanıcı Sözleşmesini Kabul Ediyorum
               </q-item-label>
             </div>
-            <div class="col-radio2" id="col-radio2">
-              <input type="radio" value="Evet" checked name="ebulten" />
-              Evet
-              <input type="radio" value="Hayır" name="ebulten" />
-              Hayır
-            </div>
-            <q-item-label id="label-contract">
-              <input type="checkbox" /> Kullanıcı Sözleşmesini Kabul Ediyorum
-            </q-item-label>
+            <button id="button-register-form">Gönder</button>
           </div>
-          <button id="button-register-form">Gönder</button>
-        </div>
-
-        <div class="col-register12" id="col-register12">
-          <q-item-label
-            class="label-membership-benefits2"
-            id="label-membership-benefits2"
-            >Üyelik Avantajları;</q-item-label
-          >
-          <ul class="membership-benefits2" id="membership-benefits2">
-            <li>
-              Satın almak istediğiniz ürünleri güvenli ticaret döngüsüyle
-              rahatlıkla sipariş edebilirsiniz.
-            </li>
-            <li>
-              Ürünlerle ilgili satıcılara mesaj göndererek bilgi alabilirsiniz.
-            </li>
-            <li>
-              Beğendiğiniz ürünleri izlediklerinize ekleyerek daha sonra
-              incelemek ya da sipariş etmek üzere saklayabilirsiniz.
-            </li>
-            <li>
-              İlginizi çeken kategorileri ve satıcıları favorilerinize
-              ekleyebilir, favori kelimeler oluşturabilirsiniz. Favorilerinizle
-              ilgili ürünler siteye eklendiğinde bilgi maili alabilirsiniz.
-            </li>
-          </ul>
-        </div>
+          <div class="col-register12" id="col-register12">
+            <q-item-label
+              class="label-membership-benefits2"
+              id="label-membership-benefits2"
+              >Üyelik Avantajları;</q-item-label
+            >
+            <ul class="membership-benefits2" id="membership-benefits2">
+              <li>
+                Satın almak istediğiniz ürünleri güvenli ticaret döngüsüyle
+                rahatlıkla sipariş edebilirsiniz.
+              </li>
+              <li>
+                Ürünlerle ilgili satıcılara mesaj göndererek bilgi
+                alabilirsiniz.
+              </li>
+              <li>
+                Beğendiğiniz ürünleri izlediklerinize ekleyerek daha sonra
+                incelemek ya da sipariş etmek üzere saklayabilirsiniz.
+              </li>
+              <li>
+                İlginizi çeken kategorileri ve satıcıları favorilerinize
+                ekleyebilir, favori kelimeler oluşturabilirsiniz.
+                Favorilerinizle ilgili ürünler siteye eklendiğinde bilgi maili
+                alabilirsiniz.
+              </li>
+            </ul>
+          </div>
+        </q-form>
       </div>
       <div class="col-register2" id="col-register2">
         <a class="transaction-guide" id="transaction-guide">
@@ -107,12 +132,7 @@
     </div>
   </q-page>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
-export default defineComponent({
-  name: 'SignUpPage',
-});
-</script>
+
 <style>
 #col-register-lbl {
   display: inline-block;

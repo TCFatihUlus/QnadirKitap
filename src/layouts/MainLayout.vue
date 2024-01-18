@@ -1,125 +1,8 @@
-<template>
-  <q-layout>
-    <q-header nonelevated id="header">
-      <div class="row1">
-        <div class="col11" id="col11">
-          <a>
-            <router-link to="/">
-              <img
-                class="logo"
-                id="logo"
-                src="../assets/logo.svg"
-                height="60"
-              />
-            </router-link>
-          </a>
-        </div>
-        <div class="col12" id="col12">
-          <DropdownMenu></DropdownMenu>
-        </div>
-        <div class="col13" id="col13">
-          <a
-            title="Online sahaflar, ikinci el kitap satıcıları, kitap dükkanları"
-            class="btn-sellers"
-            id="btn-sellers"
-          >
-            <span class="text-sellers" id="text-sellers">
-              <router-link class="text-sellers-btn" to="/sahaflar">
-                Kitap Satıcıları
-              </router-link>
-            </span>
-          </a>
-        </div>
-        <div class="col14" id="col14">
-          <p class="welcome" id="welcome">
-            Hoş geldiniz,
-            <a class="btn-signup" id="btn-signup">
-              <router-link to="/uyeol" class="text-signup" id="text-signup"
-                >Kayıt Ol</router-link
-              >
-            </a>
-            |
-            <a class="btn-login" id="btn-login">
-              <router-link
-                to="/banaozel_siparislerim"
-                class="text-login"
-                id="text-login"
-              >
-                Giriş Yap
-              </router-link>
-            </a>
-          </p>
-        </div>
-        <div class="col15" id="col15">
-          <button class="btn-special-for-me" id="btn-special-for-me">
-            <img class="icon-user" id="icon-user" src="../assets/180914.png" />
-            Bana Özel<span class="caret" id="caret"></span>
-          </button>
-        </div>
-        <div class="col16" id="col16">
-          <button clas="btn-shopping-cart" id="btn-shopping-cart">
-            <img
-              class="icon-shopping-cart"
-              id="icon-shopping-cart"
-              src="../assets/red-shopping-cart.png"
-            />
-            <router-link
-              to="/sepet"
-              class="text-shopping-cart"
-              id="text-shopping-cart"
-              >Sepetim</router-link
-            >
-          </button>
-        </div>
-      </div>
-      <div class="row2" id="row2">
-        <div class="col21" id="col21">
-          <input
-            class="searchbar"
-            id="searchbar"
-            placeholder="Satışta olan 10.961.362 kitap içinde"
-            type="text"
-            maxlength="50"
-            name="kelime"
-          />
-          <span class="span-search" id="span search">
-            <button class="search-btn" id="search-btn" type="submit">
-              ARA
-            </button>
-          </span>
-        </div>
-        <div class="col22" id="col22">
-          <a
-            class="search-detalied-btn"
-            id="search-detailed-btn"
-            title="Kitap arama sayfası - İkinci el kitap ve yeni kitap, dergi, efemera"
-            >Detaylı ara</a
-          >
-        </div>
-      </div>
-    </q-header>
-
-    <q-drawer show-if-above bordered class="drawer" id="drawer">
-      <q-list>
-        <q-item-label header> Kitaplar </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-  </q-layout>
-  <footer class="footer" id="footer"></footer>
-</template>
-<script lang="ts">
+<script>
 import { defineComponent, ref } from 'vue';
 import EssentialLink from 'components/EssentialLink.vue';
 import DropdownMenu from 'src/components/DropdownMenu.vue';
+
 //import { readBuilderProgram } from 'typescript';
 
 const linksList = [
@@ -231,6 +114,126 @@ export default defineComponent({
   },
 });
 </script>
+<template>
+  <q-layout>
+    <q-header nonelevated id="header">
+      <div class="row1">
+        <div class="col11" id="col11">
+          <a>
+            <router-link to="/">
+              <img
+                class="logo"
+                id="logo"
+                src="../assets/logo.svg"
+                height="60"
+              />
+            </router-link>
+          </a>
+        </div>
+        <div class="col12" id="col12">
+          <DropdownMenu></DropdownMenu>
+        </div>
+        <div class="col13" id="col13">
+          <a
+            title="Online sahaflar, ikinci el kitap satıcıları, kitap dükkanları"
+            class="btn-sellers"
+            id="btn-sellers"
+          >
+            <span class="text-sellers" id="text-sellers">
+              <router-link class="text-sellers-btn" to="/sahaflar">
+                Kitap Satıcıları
+              </router-link>
+            </span>
+          </a>
+        </div>
+        <div class="col14" id="col14">
+          <p class="welcome" id="welcome">
+            Hoş geldiniz,
+
+            <a class="btn-signup" id="btn-signup">
+              <router-link to="/uyeol" class="text-signup" id="text-signup"
+                >Kayıt Ol</router-link
+              >
+            </a>
+            |
+            <a class="btn-login" id="btn-login">
+              <router-link
+                to="/banaozel_siparislerim"
+                class="text-login"
+                id="text-login"
+              >
+                Giriş Yap
+              </router-link>
+            </a>
+          </p>
+        </div>
+        <div class="col15" id="col15">
+          <button class="btn-special-for-me" id="btn-special-for-me">
+            <img class="icon-user" id="icon-user" src="../assets/180914.png" />
+            Bana Özel<span class="caret" id="caret"></span>
+          </button>
+        </div>
+        <div class="col16" id="col16">
+          <button clas="btn-shopping-cart" id="btn-shopping-cart">
+            <img
+              class="icon-shopping-cart"
+              id="icon-shopping-cart"
+              src="../assets/red-shopping-cart.png"
+            />
+            <router-link
+              to="/sepet"
+              class="text-shopping-cart"
+              id="text-shopping-cart"
+              >Sepetim</router-link
+            >
+          </button>
+        </div>
+      </div>
+      <div class="row2" id="row2">
+        <div class="col21" id="col21">
+          <input
+            class="searchbar"
+            id="searchbar"
+            placeholder="Satışta olan 10.961.362 kitap içinde"
+            type="text"
+            maxlength="50"
+            name="kelime"
+          />
+          <span class="span-search" id="span search">
+            <button class="search-btn" id="search-btn" type="submit">
+              ARA
+            </button>
+          </span>
+        </div>
+        <div class="col22" id="col22">
+          <a
+            class="search-detalied-btn"
+            id="search-detailed-btn"
+            title="Kitap arama sayfası - İkinci el kitap ve yeni kitap, dergi, efemera"
+            >Detaylı ara</a
+          >
+        </div>
+      </div>
+    </q-header>
+
+    <q-drawer show-if-above bordered class="drawer" id="drawer">
+      <q-list>
+        <q-item-label header> Kitaplar </q-item-label>
+
+        <EssentialLink
+          v-for="link in essentialLinks"
+          :key="link.title"
+          v-bind="link"
+        />
+      </q-list>
+    </q-drawer>
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+  </q-layout>
+  <footer class="footer" id="footer"></footer>
+</template>
+
 <style>
 #header {
   height: 160px;

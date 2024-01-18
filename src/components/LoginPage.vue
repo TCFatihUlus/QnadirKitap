@@ -1,18 +1,14 @@
 <script setup>
 import { QForm } from 'quasar';
+import { reactive } from 'vue';
 
-defineProps({
-  email: {
-    required: true,
-    type: String,
-  },
-  password: {
-    required: true,
-    type: String,
-  },
+import { useAuthStore } from '../stores/auth';
+
+const loginForm = reactive({
+  email: undefined,
+  password: undefined,
 });
-
-const emit = defineEmits(['update:email', 'update:password']);
+const authStore = useAuthStore();
 </script>
 <template>
   <q-layout>
@@ -21,7 +17,7 @@ const emit = defineEmits(['update:email', 'update:password']);
         Üye Girişi
       </q-item-label>
 
-      <q-form class="form1">
+      <q-form class="form1" @submit.prevent="authStore.handleLogin(loginForm)">
         <div class="row3" id="row3">
           <div class="col1" id="col1">
             <div class="col3" id="col3">
@@ -32,8 +28,7 @@ const emit = defineEmits(['update:email', 'update:password']);
                 class="input-email"
                 id="input-email"
                 placeholder="eposta"
-                :model-value="email"
-                @update:model-value="(value) => emit('update:email', value)"
+                v-model="loginForm.email"
               />
               <q-item-label> Şifre </q-item-label>
               <input
@@ -41,8 +36,7 @@ const emit = defineEmits(['update:email', 'update:password']);
                 class="input-password"
                 id="input-password"
                 placeholder="Sifre"
-                :model-value="password"
-                @update:model-value="(value) => emit('update:password', value)"
+                v-model="loginForm.password"
               />
               <div class="row4" id="row4">
                 <div class="col5" id="col5">
@@ -53,7 +47,9 @@ const emit = defineEmits(['update:email', 'update:password']);
                     Şifremi Unuttum
                   </a>
                 </div>
-                <button class="button-login" id="button-login">Giriş</button>
+                <button type="submit" class="button-login" id="button-login">
+                  Giriş
+                </button>
               </div>
             </div>
             <div class="col4" id="col4">
@@ -228,6 +224,7 @@ const emit = defineEmits(['update:email', 'update:password']);
   height: 50px;
   width: 100%;
 }
+
 #label-membership-benefits {
   font-size: large;
   margin-left: 27px;

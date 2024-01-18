@@ -1,11 +1,14 @@
-import { RouteRecordRaw } from 'vue-router';
-
-const routes: RouteRecordRaw[] = [
+const routes = [
   {
+    name: '',
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') },
+      {
+        name: 'home',
+        path: '',
+        component: () => import('pages/IndexPage.vue'),
+      },
       {
         path: '/sepet',
         component: () => import('../components/ShoppingCart.vue'),

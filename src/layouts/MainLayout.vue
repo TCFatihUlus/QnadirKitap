@@ -1,116 +1,15 @@
 <script>
-import { defineComponent, ref } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
+import { defineComponent } from 'vue';
+
 import DropdownMenu from 'src/components/DropdownMenu.vue';
 
 //import { readBuilderProgram } from 'typescript';
-
-const linksList = [
-  {
-    title: '> Bilim ve Teknik',
-
-    link: 'https://quasar.dev',
-  },
-  {
-    title: '> Çizgi Roman',
-
-    link: 'https://github.com/quasarframework',
-  },
-  {
-    title: '> Çocuk Kitapları',
-
-    link: 'https://chat.quasar.dev',
-  },
-  {
-    title: '> Din',
-
-    link: 'https://forum.quasar.dev',
-  },
-  {
-    title: '> Edebiyat',
-
-    link: 'https://twitter.quasar.dev',
-  },
-  {
-    title: '> Ekonomi & İş Dünyası',
-
-    link: 'https://facebook.quasar.dev',
-  },
-  {
-    title: '> Felsefe & Düşünce',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Hukuk',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Osmanlıca',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Referans & Başvuru',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Sağlık',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Sanat',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Sınav ve Ders Kitapları',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Spor',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Tarih',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Toplum & Siyaset',
-
-    link: 'https://awesome.quasar.dev',
-  },
-  {
-    title: '> Diğer & Çeşitli',
-
-    link: 'https://awesome.quasar.dev',
-  },
-];
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
-    EssentialLink,
     DropdownMenu,
-  },
-
-  setup() {
-    const leftDrawerOpen = ref(false);
-
-    return {
-      essentialLinks: linksList,
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
   },
 });
 </script>
@@ -216,17 +115,6 @@ export default defineComponent({
       </div>
     </q-header>
 
-    <q-drawer show-if-above bordered class="drawer" id="drawer">
-      <q-list>
-        <q-item-label header> Kitaplar </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
-    </q-drawer>
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -248,7 +136,7 @@ export default defineComponent({
   height: 80px;
   display: inline-block;
   vertical-align: middle;
-  border-right-style: inset;
+  border-right-style: solid;
   border-color: lightblue;
   border-width: 0.01mm;
 }
@@ -257,8 +145,8 @@ export default defineComponent({
   height: 80px;
   display: inline-block;
   vertical-align: middle;
-  border-left-style: inset;
-  border-right-style: inset;
+  border-left-style: solid;
+  border-right-style: solid;
   border-color: lightblue;
   border-width: 0.01mm;
 }
@@ -267,8 +155,8 @@ export default defineComponent({
   height: 80px;
   display: inline-block;
   vertical-align: middle;
-  border-left-style: inset;
-  border-right-style: inset;
+  border-left-style: solid;
+  border-right-style: solid;
   border-color: lightblue;
   border-width: 0.01mm;
 }
@@ -277,7 +165,7 @@ export default defineComponent({
   height: 80px;
   display: inline-block;
   vertical-align: middle;
-  border-left-style: inset;
+  border-left-style: solid;
   border-color: lightblue;
   border-width: 0.01mm;
 }
@@ -316,6 +204,7 @@ export default defineComponent({
   border-bottom-left-radius: 5px;
   background-color: white;
   display: inline-block;
+  border-style: solid;
 }
 #span-search {
   background-color: lightpink;
@@ -346,6 +235,8 @@ export default defineComponent({
 #search-detailed-btn {
   display: inline-block;
   line-height: 80px;
+  text-decoration: none;
+  color: white;
 }
 #categories-btn {
   display: inline-block;
@@ -416,7 +307,7 @@ export default defineComponent({
   text-align: center;
   margin-top: 25px;
   margin-left: 35px;
-  border-style: inset;
+  border-style: solid;
   border-width: 0.25mm;
   border-radius: 5px;
   border-color: lightblue;
@@ -431,7 +322,7 @@ export default defineComponent({
   display: inline-block;
   text-align: center;
   margin-top: 25px;
-  border-style: inset;
+  border-style: solid;
   border-width: 0.25mm;
   border-radius: 5px;
   border-color: lightblue;
@@ -454,6 +345,7 @@ export default defineComponent({
 }
 #text-shopping-cart {
   text-decoration: none;
+  color: black;
 }
 
 #footer {

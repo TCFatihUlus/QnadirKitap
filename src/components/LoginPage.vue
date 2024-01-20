@@ -183,10 +183,12 @@ const authStore = useAuthStore();
 #input-email {
   width: 80%;
   border-radius: 3px;
+  border-style: solid;
   height: 50px;
 }
 #input-password {
   border-radius: 3px;
+  border-style: solid;
   width: 80%;
   height: 50px;
 }
@@ -195,6 +197,7 @@ const authStore = useAuthStore();
   width: 80%;
   height: 50px;
   color: white;
+  border-style: solid;
   background-color: brown;
 }
 #label-not-member {
@@ -210,6 +213,7 @@ const authStore = useAuthStore();
   color: white;
   background-color: brown;
   margin-left: 30px;
+  border-style: solid;
   text-decoration: none;
 }
 .transaction-guide {

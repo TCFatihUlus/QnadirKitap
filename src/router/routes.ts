@@ -25,6 +25,10 @@ const routes = [
         path: '/sahaflar',
         component: () => import('../pages/BookSellers.vue'),
       },
+      {
+        path: '/kitap',
+        component: () => import('../pages/ProductPage.vue'),
+      },
     ],
   },
 
@@ -45,6 +49,10 @@ const routes = [
   {
     path: '/sepet',
     component: () => import('../components/ShoppingCart.vue'),
+  },
+  {
+    path: '/kitap',
+    component: () => import('../pages/ProductPage.vue'),
   },
 ];
 

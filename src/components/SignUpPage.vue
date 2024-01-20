@@ -208,6 +208,7 @@ const registerForm = reactive({
   margin-left: 20px;
   border-radius: 3px;
   height: 50px;
+  border-style: solid;
 }
 .select-register-form {
   width: 90%;
@@ -235,5 +236,6 @@ const registerForm = reactive({
   height: 50px;
   border-radius: 3px;
   color: white;
+  border-style: solid;
 }
 </style>

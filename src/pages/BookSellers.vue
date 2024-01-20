@@ -7,6 +7,7 @@
         >
         <div class="bookseller-row0">
           <div class="col01">
+            <img src="../../dist/spa/icons/icon3.png" />
             <input
               class="searchbar"
               id="searchbar2"
@@ -114,7 +115,7 @@ onMounted(async () => {
 }
 
 .bookseller-row0 {
-  height: 80px;
+  height: 40px;
   width: 100%;
 }
 .bookseller-row {
@@ -134,7 +135,7 @@ onMounted(async () => {
 .bookseller-row3 {
   border-top-width: 0.001mm;
   border-top-color: gray;
-  border-top-style: set;
+
   border-bottom-width: 0.001mm;
   border-bottom-color: gray;
   border-bottom-style: inset;
@@ -146,30 +147,41 @@ onMounted(async () => {
 .col01 {
   width: 68%;
   display: inline-block;
+  border-style: solid;
+  border-width: 0.0001mm;
+  border-color: gray;
+  height: 40px;
 }
 .col02 {
   width: 99px;
   display: inline-block;
-  height: 30px;
+  height: 40px;
 }
 .col03 {
   width: 99px;
-  height: 30px;
+  height: 40px;
   display: inline-block;
 }
 .col023 {
   width: 200px;
   display: inline-block;
+  height: 40px;
 }
 .btn-03 {
   background-color: brown;
   color: white;
+  height: 100%;
+  width: 100%;
 }
 .bookseller-select {
   width: 100%;
+  height: 100%;
   color: black;
 }
 #searchbar2 {
-  width: 100%;
+  width: 90%;
+  display: inline-block;
+  border-style: none;
+  height: 100%;
 }
 </style>

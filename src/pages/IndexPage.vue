@@ -3,7 +3,7 @@
     <div>
       <div class="col-essentiallinks">
         <q-list class="list-essential">
-          <q-item-label header> Kitaplar </q-item-label>
+          <q-item-label header class="header-books"> Kitaplar </q-item-label>
 
           <EssentialLink
             v-for="link in essentialLinks"
@@ -35,7 +35,7 @@ import { defineComponent, ref } from 'vue';
 import { onMounted } from 'vue';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import CarouselSlide from 'src/components/CarouselSlide.vue';
-import ProductCard from 'src/components/ProductCard.vue';
+import ProductCard from 'src/pages/ProductCard.vue';
 import { fapp } from '../boot/firebase';
 import EssentialLink from '../components/EssentialLink.vue';
 const linksList = [
@@ -210,5 +210,9 @@ export default defineComponent({
 .q-item {
   min-height: 30px;
   height: 10px;
+}
+.header-books {
+  color: brown;
+  font-size: larger;
 }
 </style>

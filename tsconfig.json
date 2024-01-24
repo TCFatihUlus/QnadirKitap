@@ -3,6 +3,7 @@
 
   "compilerOptions": {
     "baseUrl": ".",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "strictNullChecks": false
   }
 }

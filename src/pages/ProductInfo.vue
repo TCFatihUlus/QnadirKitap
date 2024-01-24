@@ -1,38 +1,39 @@
 <template>
   <q-page>
-    <q-item v-bind="(kitap, index) in kitaplar" :key="index">
-      <div class="productinfo-row1">
-        <div class="productinfo-col1">
+    <div class="productinfo-row1">
+      <div class="productinfo-col1">
+        <div>
           <img />
         </div>
         <div class="productinfo-col2">
           <div class="productinfo-row21">
-            <div>{{ kitap.name }}</div>
-            <div></div>
-            <div></div>
+            <div>{{ this.$route.params.id }}</div>
           </div>
-          <div class="productinfo-row22"></div>
-          <div class="productinfo-row23">
-            <button class="btn-addToCart">Sepete Ekle</button>
-            <button class="btn-askToSeller">Satıcıya Soru Sor</button>
+          <div>
+            <div></div>
           </div>
         </div>
-        <div class="productinfo-col3"></div>
+        <div class="productinfo-row22"></div>
+        <div class="productinfo-row23">
+          <button class="btn-addToCart">Sepete Ekle</button>
+          <button class="btn-askToSeller">Satıcıya Soru Sor</button>
+        </div>
       </div>
-    </q-item>
+      <div class="productinfo-col3"></div>
+    </div>
+    *
   </q-page>
 </template>
 <script setup>
+import { defineComponent, ref, onMounted } from 'vue';
 import {
   getFirestore,
   collection,
   query,
   getDocs,
 } from 'firebase/firestore/lite';
-
-import { ref, onMounted } from 'vue';
-
 const kitaplar = ref([]);
+
 onMounted(async () => {
   let fbKitaplar = [];
   const db = getFirestore();
@@ -49,10 +50,25 @@ onMounted(async () => {
       genre: doc.data().genre,
       publishingHouse: doc.data().publishingHouse,
       bookseller: doc.data().bookseller,
+      imgUrl: doc.data().imgUrl,
+      year: doc.data().year,
     };
     fbKitaplar.push(kitap);
   });
   kitaplar.value = fbKitaplar;
+});
+
+defineComponent({
+  data() {
+    return {
+      kitaplar: {},
+    };
+  },
+  props: [kitaplar],
+  mounted() {
+    this.name = this.$route.params.id;
+    this.kitap = this.kitaplar.find((kitap) => kitap.id == this.id);
+  },
 });
 </script>
 <style>

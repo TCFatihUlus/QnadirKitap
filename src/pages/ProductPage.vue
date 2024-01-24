@@ -6,16 +6,68 @@ import {
   getDocs,
 } from 'firebase/firestore/lite';
 
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, defineComponent } from 'vue';
+defineComponent({
+  data() {
+    return {
+      sepetim: [],
+    };
+  },
+  methods: {
+    async addProduct() {
+      db.collection('sepetim').add(this.sepet);
+      const docRef = await addDoc(collection(this.$db, 'sepetim'), kitap);
+      kitap.id = docRef.id;
+      this.sepet.push(kitap);
+    },
+    async addSepetim() {
+      const docRef = await addDoc(collection(this.$db, 'sepetim'), kitap);
+      kitap.id = docRef.id;
+      this.sepet.push(kitap);
+    },
+    async getSepetim() {
+      this.sepet = [];
 
+      const q = query(
+        collection(this.$db, 'sepetim'),
+        where('done', '==', false)
+      );
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((kitap) => {
+        console.log({ ...kitap.data() });
+        this.sepetim.push({ ...kitap.data() });
+      });
+
+      this.loading = false;
+    },
+  },
+});
 const kitaplar = ref([]);
+const sepetim = ref([]);
 onMounted(async () => {
-  let fbKitaplar = [];
+  let fbSepetim = [];
   const db = getFirestore();
-  const q = query(collection(db, 'kitaplar'));
+  const q = query(collection(db, 'sepetim'));
   const querySnapshot = await getDocs(q);
-
+  let fbKitaplar = [];
+  const db1 = getFirestore();
+  const q1 = query(collection(db1, 'kitaplar'));
+  const querySnapshot1 = await getDocs(q1);
   querySnapshot.forEach((doc) => {
+    console.log(doc.id, '=>', doc.data());
+    const sepet = {
+      id: doc.id,
+      name: doc.data().name,
+      author: doc.data().author,
+      cost: doc.data().cost,
+      bookseller: doc.data().bookseller,
+      imgUrl: doc.data().imgUrl,
+    };
+    fbSepetim.push(sepet);
+  });
+  sepetim.value = fbSepetim;
+  querySnapshot1.forEach((doc) => {
     console.log(doc.id, '=>', doc.data());
     const kitap = {
       id: doc.id,
@@ -69,7 +121,7 @@ onMounted(async () => {
             <div class="productcard-col312">{{ kitap.cost }}TL</div>
           </div>
           <div>
-            <button class="btn-add-cart">
+            <button @click="addProduct" class="btn-add-cart">
               <img src="../assets/red-shopping-cart2.png" />Sepete Ekle
             </button>
           </div>

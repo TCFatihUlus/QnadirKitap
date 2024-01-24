@@ -11,15 +11,15 @@ const routes = [
       },
       {
         path: '/sepet',
-        component: () => import('../components/ShoppingCart.vue'),
+        component: () => import('../pages/ShoppingCartPage.vue'),
       },
       {
         path: '/banaozel_siparislerim',
-        component: () => import('../components/LoginPage.vue'),
+        component: () => import('../pages/LoginPage.vue'),
       },
       {
         path: '/uyeol',
-        component: () => import('../components/SignUpPage.vue'),
+        component: () => import('../pages/SignUpPage.vue'),
       },
       {
         path: '/sahaflar',
@@ -28,6 +28,10 @@ const routes = [
       {
         path: '/kitap',
         component: () => import('../pages/ProductPage.vue'),
+      },
+      {
+        path: '/kitap/:id',
+        component: () => import('../pages/ProductInfo.vue'),
       },
     ],
   },
@@ -40,15 +44,15 @@ const routes = [
   },
   {
     path: '/banaozel_siparislerim',
-    component: () => import('../components/LoginPage.vue'),
+    component: () => import('../pages/LoginPage.vue'),
   },
   {
     path: '/uyeol',
-    component: () => import('../components/SignUpPage.vue'),
+    component: () => import('../pages/SignUpPage.vue'),
   },
   {
     path: '/sepet',
-    component: () => import('../components/ShoppingCart.vue'),
+    component: () => import('../pages/ShoppingCartPage.vue'),
   },
   {
     path: '/kitap',

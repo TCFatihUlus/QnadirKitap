@@ -1,26 +1,19 @@
 import { defineStore } from 'pinia';
+import authService from 'src/boot/authService';
 
-import { useRouter } from 'vue-router';
-
-export const useAuthStore = defineStore({
-  id: 'auth',
-  state: () => ({
-    user: null,
-    loading: false,
-    router: useRouter(),
-  }),
-  actions: {
-    handleLogin(data) {
-      delete data.password;
-      console.log(data);
-      this.loading = false;
-      this.router.push({ name: 'home' });
-    },
-  },
-  getters: {
-    isAuth: (state) => state.user != null,
-    getCurrrentUser(state) {
-      return state.user;
-    },
-  },
+export const useAuthStore = defineStore('authStore', () => {
+  const user = authService.getUser();
+  const isAuth = authService.isAuth();
+  const login = async (userName: string, password: string) => {
+    return await authService.login(userName, password);
+  };
+  const logout = async () => {
+    await authService.logout();
+  };
+  return {
+    user,
+    isAuth,
+    login,
+    logout,
+  };
 });

@@ -1,11 +1,19 @@
-<script>
-import { defineComponent } from 'vue';
+<script setup>
+import { defineComponent, onMounted, ref } from 'vue';
 
 import DropdownMenu from 'src/components/DropdownMenu.vue';
+import { useAuthStore } from 'src/stores/auth';
 
 //import { readBuilderProgram } from 'typescript';
-
-export default defineComponent({
+const authStore = useAuthStore();
+const currentUser = ref();
+onMounted(async () => {
+  currentUser.value = await authStore.user;
+});
+const handleLogout = async () => {
+  await authStore.logout(), (location.href = '/');
+};
+defineComponent({
   name: 'MainLayout',
 
   components: {
@@ -45,7 +53,7 @@ export default defineComponent({
             </span>
           </a>
         </div>
-        <div class="col14" id="col14">
+        <div class="col14" id="col14" v-if="!authStore.isAuth">
           <p class="welcome" id="welcome">
             Hoş geldiniz,
 
@@ -65,6 +73,10 @@ export default defineComponent({
               </router-link>
             </a>
           </p>
+        </div>
+        <div class="logout" v-else>
+          Hoş geldiniz {{ currentUser?.displayName }}
+          <button class="btn-logout" @click="handleLogout">Çıkış</button>
         </div>
         <div class="col15" id="col15">
           <button class="btn-special-for-me" id="btn-special-for-me">
@@ -354,5 +366,14 @@ export default defineComponent({
 }
 #drawer {
   display: inline-block;
+}
+.logout {
+  display: inline-block;
+  color: black;
+}
+.btn-logout {
+  border-color: white;
+  border-style: none;
+  background-color: white;
 }
 </style>
